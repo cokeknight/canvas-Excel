@@ -7,5 +7,5 @@ define({
 		cols : 100,
 		width:819,
         height:600,
-        YAXISWIDTH:20
+        YAXISWIDTH:16
 });

@@ -96,14 +96,64 @@ define(["base","config"], function(B, C) {
         },
 
         drawYAxis: function(){
-            this.draw
+            
 
             var ctx = this.ctx;
             var startX = 0;
             var startY = 0;
 
-            ctx.fillStyle="#F1F1F1";console.log(ctx,startX+0.5, startY+0.5, C.YAXISWIDTH-1, C.height-1);
+            ctx.fillStyle="#F1F1F1";//console.log(ctx,startX+0.5, startY+0.5, C.YAXISWIDTH-1, C.height-1);
             ctx.fillRect(startX, startY, C.YAXISWIDTH, C.height);
+            this.drawTAngel();
+            this.drawBAngel();
+            this.drawYScrollBar();
+        },
+        drawTAngel: function(){
+            var ctx = this.ctx;
+            var startX = 0;
+            var startY = 0;
+            var offest  = 5;
+            var ANGELWIDTH = 8;
+            ctx.fillStyle="#A3A3A3";console.log(startX+C.YAXISWIDTH/2, startY);
+            var x = startX+C.YAXISWIDTH/2;
+            var y= startY+offest;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x+ANGELWIDTH/2,y+ANGELWIDTH/2);
+            ctx.lineTo(x-ANGELWIDTH/2,y+ANGELWIDTH/2);
+            ctx.closePath();
+            ctx.fill();
+
+        },
+        drawBAngel: function(){
+            var ctx = this.ctx;
+            var startX = 0;
+            var offest  = 5;
+            var startY = C.height
+            var ANGELWIDTH = 8;
+            ctx.fillStyle="#A3A3A3";//console.log(startX+C.YAXISWIDTH/2, startY);
+            var x = startX+C.YAXISWIDTH/2;
+            var y= startY-offest;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x+ANGELWIDTH/2,y-ANGELWIDTH/2);
+            ctx.lineTo(x-ANGELWIDTH/2,y-ANGELWIDTH/2);
+            ctx.closePath();
+            ctx.fill();
+
+        },
+        drawYScrollBar : function(){
+            var ctx = this.ctx;
+            var offest  = 5;
+            var ANGELWIDTH = 8;
+            var AngelRegionH =offest*2 + ANGELWIDTH/2;
+            var startX = 0;
+            var startY = AngelRegionH;
+            var YScrollBarRegionH = C.height - (offest*2 + ANGELWIDTH/2)*2;
+            
+            ctx.fillStyle="#AAAAAB";console.log(ctx,startX, startY, C.YAXISWIDTH-1, C.height-1);
+            ctx.fillRect(startX, AngelRegionH, C.YAXISWIDTH, YScrollBarRegionH);
+
         }
     }
 
