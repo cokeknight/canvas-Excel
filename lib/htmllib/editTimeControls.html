@@ -1,0 +1,19 @@
+<div id="myContext" class="myContextBox popupmenu_centerbox">
+    <h1>日期时间控件</h1>
+    <a class="float_del" onclick="clearCeng('myContextMenu')" href="javascript:;">删除</a>
+    <div id="center_boxitem" > 
+    	<h2>选择类型</h2>
+        <div id="outline" class="outline">
+            <li><input type="radio" name="radio" value="longtime" id="longdate" /><label for="longdate">长日期类型（格式2002年12月2日）</label></li>
+            <li><input type="radio" name="radio" value="shortdate" id="shortdate" /><label for="shortdate">短日期类型（格式2002-12-2）</label></li>
+            <li><input type="radio" name="radio" value="time" id="time" /><label for="time">时间类型（格式12:23:34）</label></li>
+            <li><input type="radio" name="radio" value="timedate" id="timedate" /><label for="timedate">日期时间类型（格式2002-12 12:23:34）</label></li>
+			<li><input type="radio" name="radio" value="longtime2" id="longdate2" /><label for="longdate2">长日期下拉日历类型（格式2002年12月02日）</label></li>
+			<li><input type="radio" name="radio" value="shortdate2" id="shortdate2" /><label for="shortdate2">短日期下拉日历类型（格式2002-12-02）</label></li>
+   		</div>
+    </div>
+    <div class="bottom_boxbutton">
+      <input class="ui-button-state" type="button" id="check" value="确认">
+      <input class="ui-button-state" type="button" id="checkfalse" value="取消" onclick="clearCeng('myContextMenu')">
+    </div>
+</div>

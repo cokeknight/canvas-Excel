@@ -1,0 +1,151 @@
+<div class="myContextBox tangram-dialog chart" id="tangram-dialog">
+  <div class="tangram-dialog-title"> <span class="tangram-dialog-title-inner" id="tangram-title"> 图表类型 </span>
+    <div class="tangram-dialog-close" onClick="clearCeng('myContextMenu');"> </div>
+  </div>
+  <div class="tangram-dialog-content">
+    <div class="clath-path-all">
+      <form name='selbutton'>
+        <div class="clath-path-all">
+        <li> <span style="width:auto"> 图表向导&nbsp;&nbsp;<select name="type">
+            <option value="1"> 柱状图 </option>
+            <option value="2"> 堆积柱状图 </option>
+            <option value="3"> 3D柱状图 </option>
+            <option value="4"> 3D堆积柱状图 </option>
+            <option value="5"> 条形图 </option>
+            <option value="6"> 堆积条形图 </option>
+            <option value="7"> 线型图 </option>
+            <option value="8"> 圆饼图 </option>
+            <option value="9"> 3D圆饼图 </option>
+            <option value="10"> 面积图 </option>
+            <option value="11"> 堆积面积图 </option>
+            <option value="12"> K线图 </option>
+            <option value="13"> 圈饼图 </option>
+            <option value="14"> 漏斗图 </option>
+            <option value="15"> 甘特图 </option>
+            <option value="16"> 柱状线型双坐标图 </option>
+            <option value="17"> 3D柱状线型双坐标图 </option>
+          </select></span><span>
+          <input type="radio" name="XYAXIS" value="XYAXIS" id="longdate" /><label for="longdate">行（水平方向）</label>
+          <input type="radio" name="XYAXIS" value="YYAXIS" id="shortdate" /><label for="shortdate">列（垂直方向）</label>
+
+           <span>
+	 </li>
+        <div id="center_boxitem" class="center_boxitem">
+            <h2> 标题 </h2>
+            <div class="outline" style="padding-top:0px; padding-bottom:0px;">
+        <table width="80%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>图表标题</td>
+    <td>图表子标题</td>
+    <td>x坐标名称</td>
+  </tr>
+  <tr>
+    <td><input type="text" name="title" value="" /></td>
+    <td><input type="text" name="subtitle" value="" /></td>
+    <td><input type="text" name="xaxislabelx" value=""/></td>
+  </tr>
+</table>
+ </div>
+        </div>
+
+        <div id="center_boxitem" class="center_boxitem">
+            <h2> 数据区域 </h2>
+            <div class="outline">
+                <li> <span> 图例系列数据区域 </span> <span>
+                  <input type="text" name="legenddata" value="" width="200" />
+                  
+                  <input type="checkbox" name="USE_LINKS" value="" id="USE_LINKS" style="margin-left:30px;"/>
+                  <label for="USE_LINKS"> 使用外链 </label>
+                  </span> </li>
+                <li> <span> 浮动提示数据区域 </span> <span>
+                  <input type="text" name="hovertextdata" value="" width="200" />
+                  
+                   <input type="checkbox" name="OPEN_NEW_WINDOW" value="" id="OPEN_NEW_WINDOW" style="margin-left:30px;"/>
+                  <label for="OPEN_NEW_WINDOW"> 新窗口打开外链 </label>
+                  </span> </li>
+                <li> <span> 数据区域 </span> <span>
+                  <input type="text" name="data" value="" />
+                  </span> 
+                </li>
+                <li> <span>数值前缀域 </span> <span>
+                  <input type="text" name="numprefix" value="" /> </span> </li>
+                <li><span>
+ 数值后缀域 </span> <span>
+                  <input type="text" name="numsuffix" value="" />
+                  </span>
+                </li>
+                <li><span>
+ 小数后位数 </span> <span>
+                  <input type="text" name="numdigit" value="0" style="width:20px" />
+                  <input type="checkbox" name="numflag" value="" id="numflag" style="margin-left:30px;"/>
+                  <label for="numflag"> 在图注上显示数值 </label>
+
+                  </span>
+                </li>
+            </div>
+        </div>
+        <div id="center_boxitem" class="center_boxitem">
+            <h2> XY轴设置</h2>
+            <div class="outline">
+              <li> <span> 分类X轴数据区域 </span> <span>
+                <input id="item1" name="xlabeldata" type="text" value="" style="width:180px;"
+                                        />
+                </span> </li>
+              <li> <span> Y坐标最小值 </span> <span>
+                <input id="item2" name="yaxisminval" type="text" value="" style="width:60px;"
+                                        />
+                </span> </li>
+              <li> 
+              	 <span> Y坐标最大值 </span>
+                 <span><input name="yaxismaxval" type="text" value="" style="width:60px;" />
+                                     <input type="checkbox" name="SHOW_NAME" value="" id="SHOW_NAME" style="margin-left:30px;"/>
+                    <label for="SHOW_NAME"> 显示分类X轴名称 </label>
+</span> 
+              </li>
+            </div>
+        </div>
+        <div id="center_boxitem" class="center_boxitem">
+            <h2> XY轴网格线设置 </h2>
+            <div class="outline">
+                <li>
+                      <dt><input type="checkbox" name="SHOW_YAXIS_DIV_LINE" value="" id="SHOW_YAXIS_DIV_LINE"/>
+                      
+                      <label for="SHOW_YAXIS_DIV_LINE"> 显示数轴Y轴网格线 </label>
+                      
+                      </dt><dt><input type="checkbox" name="SHOW_XAXIS_DIV_LINE" value="" id="SHOW_XAXIS_DIV_LINE" />
+                      
+                      <label for="SHOW_XAXIS_DIV_LINE"> 显示数轴X轴网格线 </label></dt>
+                    
+                </li>
+                <li>
+                    <span> 网格颜色 </span> 
+                    <span style="width:200px">
+                    <input type="text" disabled="disabled" style="width:60px" name="divlinecolor"/>
+                    <button value="设置颜色" style="width:60px"  onclick="colordialog(event, '','','divlinecolor');return false;">设置颜色</button>
+                    </span>
+                </li>
+            </div>
+        <li> <span> 系列颜色 </span> <span>
+          <select name="serialcolor" style="width:100px" onchange="this.style.background=this.options[this.value.substring(1)].style.background;">
+            <option value=""></option>
+          </select>&nbsp;&nbsp;&nbsp;&nbsp;<button value="修改系列颜色" style="width:100px"  onclick="colordialog(event, '','','serialcolor');return false;">修改系列颜色</button>
+          </span> 
+</li>
+              <li> <span>右边轴系列个数 </span> <span>
+                <input id="item1" name="rightyaxisseialnums" type="text" value="" style="width:180px;"/>
+                </span> </li>
+              <li> <span>图表外加设置 </span> <span>
+                <input id="item1" name="extraheaderdata" type="text" value="" style="width:180px;"/>
+                </span> </li>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="tangram-dialog-footer">
+    <div class="tangram-dialog-accept">
+      <input class="ui-button-state" type="button" id="check" value="确认">
+      <input class="ui-button-state" type="button" id="checkfalse" value="取消" onClick="clearCeng('myContextMenu')">
+    </div>
+  </div>
+</div>
+</div>

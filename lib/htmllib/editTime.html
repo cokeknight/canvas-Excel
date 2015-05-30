@@ -1,0 +1,89 @@
+<style type="text/css">
+li.mobipick-inline-block {
+display: inline-block;
+zoom: 1; width:40px;
+}
+.mobipick-main li {
+list-style: none;
+}
+.mobipick-main a {
+display: inline-block;
+width: 100%;
+padding: 0.5em 0;
+border: 0;
+text-decoration: none;
+text-align: center;
+font: bold 1em Helvetica,Arial,sans-serif;
+zoom: 1;
+}
+.mobipick-groups input {
+display: block;
+width: 98%;
+padding: 0;
+margin: 0 auto;
+text-align: center;
+background-color: 
+white;
+border: 1px solid 
+#B3B3B3;
+font: bold 1.8em Helvetica,Arial,sans-serif;
+-webkit-appearance: none;
+-webkit-border-radius: 0;
+}
+li.mobipick-inline-block {
+	width:100px;
+	display:inline-block;
+	zoom:1;
+	*display:inline;
+}
+
+.ui-body-b, .ui-dialog.ui-overlay-b {
+border: 1px solid #C6C6C6;
+background: #CCC;
+color: #333;
+text-shadow: 0 1px 0 white;
+font-weight: normal;
+background-image: -webkit-gradient(linear,left top,left bottom,from(#E6E6E6),to(#CCC));
+font-size:18px;
+border-bottom:none;
+
+}
+.ui-body-a, .ui-dialog.ui-overlay-a {
+    color: #FFFFFF;
+    font-weight: normal;
+    text-shadow: 0 1px 0 #000000;
+	text-decoration:none
+}
+#center_boxitem li{ list-style:none;}
+</style>
+<div id="showbox">
+    <ul class="mobipick-groups">
+      <li class="mobipick-inline-block" style="width: 31.333333333333332%; ">
+        <ul>
+          <li class="mobipick-next-day ui-body-b ui-corner-top"><a href="#" data-name="plus">+</a></li>
+          <li class="paddingnone">
+            <input type="text" value="2012" class="mobipick-input mobipick-day ui-shadow-inset" readonly="readonly">
+          </li>
+          <li class="mobipick-prev-day ui-body-b ui-corner-bottom"><a data-name="Minus" href="#">-</a></li>
+        </ul>
+      </li>
+      <li class="mobipick-inline-block" style="width: 31.333333333333332%; ">
+        <ul>
+          <li class="mobipick-next-month ui-body-b ui-corner-top"><a data-name="plus" href="#">+</a></li>
+          <li class="paddingnone"> 
+            <input type="text" value="2012" class="mobipick-input mobipick-month ui-shadow-inset" readonly="readonly">
+          </li>
+          <li class="mobipick-prev-month ui-body-b ui-corner-bottom"><a data-name="Minus" href="#">-</a></li>
+        </ul>
+      </li>
+      <li class="mobipick-inline-block" style="width: 31.333333333333332%; ">
+        <ul>
+          <li class="mobipick-next-year ui-body-b ui-corner-top"><a data-name="plus" href="#">+</a></li>
+          <li class="paddingnone">
+            <input type="text" value="2012" class="mobipick-input mobipick-year ui-shadow-inset" readonly="readonly">
+          </li>
+          <li class="mobipick-prev-year ui-body-b ui-corner-bottom" ><a data-name="Minus" href="#">-</a></li>
+        </ul>
+      </li>
+    </ul>
+</div>

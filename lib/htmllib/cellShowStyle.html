@@ -1,0 +1,22 @@
+
+<div class="myContextBox tangram-dialog" id="tangram-dialog">
+  <div class="tangram-dialog-title"><span class="tangram-dialog-title-inner">在表格上放置图片</span>
+    <div class="tangram-dialog-close" onclick="clearCeng('myContextMenu');"></div>
+  </div>
+  <div class="tangram-dialog-content">
+    <div class="clath-path-all">
+    	<form id="form1" action="process_upload.php?type=upload" method="post" enctype="multipart/form-data" target="uploadframe">
+       <input name="myfile" id="myfile" type="file"  value=""/>
+       <input type="submit" class="ui-button-state" id="upload" name="upload" value="上传"/>
+       <input type="hidden" name="type" value="" id="type"/>
+       <iframe id="uploadframe" name="uploadframe" src="process_upload.php" class="noshow"/></iframe>  
+       </form>  
+    </div>
+  </div>
+  <div class="tangram-dialog-footer">
+    <div class="tangram-dialog-accept">
+      <button class="btn" onclick="clearCeng('myContextMenu')";>关闭</button>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,10 @@
+
+# BEGIN html5_chinaexcel
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^$ main.php
+
+
+</IfModule>
+
+# END html5_chinaexcel

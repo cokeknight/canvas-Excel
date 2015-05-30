@@ -1,0 +1,41 @@
+<div id="myContextMenu" class="RightMenuBox" style="position: absolute; left: 305px; top: 30px; display: block; ">
+  <ul>
+    <li>设置用户自定义数值</li>
+    <li>设置用户自定义字符值</li>
+    <li>设置当前单元变量名称</li>
+    <li>设置单元是否可编辑</li>
+  </ul>
+</div>
+<style type="text/css">
+#show li.s1{ border:1px solid #ff9900; background:#454242;}
+#show li.s2{ border:1px solid #D9D8D8; background:#312E2E;}
+</style>
+<ul id="show">
+  <li onMouseOver="this.className='s1'" onMouseOut="this.className='s2'">*sasas</li>
+</ul>
+<style type="text/css">
+body, ul, h1 {
+	font-family:Arial;
+	font-size:12px;
+}
+.page {
+	text-align:center;
+}
+.page li {
+	display:inline-block;
+	padding:5px 8px;
+	text-decoration:none;
+	border:1px solid #FFF;
+	background-color:#0CF;
+	color:#FFF;
+}
+.page li:hover, .page .selected {
+	border:1px solid #CCC;
+	background-color:#FFF;
+	color:#000;
+	font-weight:bold;
+}
+</style>
+</head>
+<h1>分页样式</h1>
+<div class="page"> <li>1</li> <li>1</li> <li>1</li> <li>1</li>  </div>

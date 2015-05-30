@@ -1,0 +1,32 @@
+<div class="myContextBox tangram-dialog insertFormat" id="tangram-dialog">
+  <div class="tangram-dialog-title"> <span class="tangram-dialog-title-inner" id="tangram-title"> 插入格式行 </span>
+    <div class="tangram-dialog-close" onClick="clearCeng('myContextMenu');"> </div>
+  </div>
+  <div class="tangram-dialog-content">
+    <div class="clath-path-all">
+      <form name='selbutton'>
+        <div class="clath-path-all">
+          <li class="formatl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            在第
+            <input type="number"  min="0" name="firstrow" value="" style="width:80px;" />
+            行后插入 </li>
+          <li class="formatl">&nbsp;&nbsp;&nbsp;&nbsp;要插入的行数
+            <input type="number"  min="0" value="1" name="rownums" style="width:80px;"/>
+          </li>
+          <li class="formatl">插入行格式同第
+            <input type="number"  min="0" value="" name="startrow" style="width:80px;"/>
+            行到
+            <input type="number"  min="0" value="" name="endrow" style="width:80px;"/>
+            行 </li>
+        </div>
+      </form>
+    </div>
+    <div class="tangram-dialog-footer">
+      <div class="tangram-dialog-accept">
+        <input class="ui-button-state" type="button" id="check" value="确认">
+        <input class="ui-button-state" type="button" id="checkfalse" value="取消" onClick="clearCeng('myContextMenu')">
+      </div>
+    </div>
+  </div>
+</div>

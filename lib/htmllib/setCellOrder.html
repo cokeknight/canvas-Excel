@@ -1,0 +1,48 @@
+
+<div class="myContextBox tangram-dialog" id="tangram-dialog"> 
+  <!--title-->
+  <div class="tangram-dialog-title"> <span class="tangram-dialog-title-inner" id="tangram-title"> 下拉框参数设置 </span>
+    <div class="tangram-dialog-close" onClick="clearCeng('myContextMenu');"> </div>
+  </div>
+  <!--title--> 
+  <!--content-->
+  <div class="tangram-dialog-content">
+    <div class="clath-path-all">
+      <form name='selbutton'>
+		<li>序号偏移行&nbsp;&nbsp;<input id="item1" class="input" type="text" value="0" style="width:60px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
+        	序号偏移列&nbsp;&nbsp;<input id="item2" class="input" type="text" value="0" style="width:60px;"/>
+        </li>
+        
+        <div id="center_boxitem" style="width:300px;">
+        	<h2>序号生成规则</h2>
+            <div class="outline">
+                    <li><input type="radio" name="rule" value="0" id="rule1" checked="checked" /><label for="rule1">当前行列号减去偏移行列</label></li>
+                    <li><input type="radio" name="rule" value="1" id="rule2" /><label for="rule1">相邻序号自动递增，序号加上偏移行或列</label></li>
+            </div>
+        </div>
+        <li>序号类型&nbsp;&nbsp;
+        	<select name="seltype" id="seltype" style="width:210px; margin-left:20px;">
+            	<option value="1">1,2,3,...</option>
+            	<option value="2">一，二，三，...</option>
+            	<option value="3">a,b,c,...</option>
+            	<option value="4">A,B,C,...</option>
+            	<option value="5">小写单元名称</option>
+            	<option value="6">大写单元名称</option>
+            </select>
+        </li>
+		<li>序号显示格式&nbsp;&nbsp;<input id="orderrule" class="input" type="text" value=""/></li>
+        <li style="width:300px; text-align:left"><p>如：【@row,@col】,@row,@col,其中@row表示行序号，@col表示列序号</p></li>
+      </form>
+    </div>
+  </div>
+  <!--content--> 
+  <!--footer-->
+  <div class="tangram-dialog-footer">
+    <div class="tangram-dialog-accept">
+      <input class="ui-button-state" type="button" id="check" value="确认">
+      <input class="ui-button-state" type="button" id="checkfalse" value="取消" onClick="clearCeng('myContextMenu')">
+    </div>
+  </div>
+  <!--footer--> 
+</div>
+

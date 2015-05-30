@@ -1,0 +1,31 @@
+<div id="myContext" class="myContextBox popupmenu_centerbox">
+    <h1>下拉框参数设置</h1>
+    <a class="float_del" onclick="clearCeng('myContextMenu')" href="javascript:;">删除</a>
+    <div class="clath-path-all">
+		<li><span>下拉框显示项</span><input id="item1" class="input" type="text" value="" width="100" /></li>
+		<li><span>显示项对应值</span><input id="item2" class="input" type="text" value="" width="100"/></li>
+		<li><span>允许输入新文本</span><input id="item3" type="checkbox" value=""/></li>
+        <li style="margin-top:8px;">
+        	<button class="ui-button-state" id="plus">增加</button>
+        	<button class="ui-button-state" id="insert">插入</button>
+            <button class="ui-button-state" id="del">删除</button>
+            <button class="ui-button-state" id="edit">修改</button>
+        </li>
+        <div id="content">
+        	<table class="showxiala" width="98%" id="table1"  border="0" cellpadding="1" cellspacing="1" bgcolor="#CBD8AC" align="center">
+            	<thead bgcolor="#EEF4EA">
+                    <tr>
+                        <th>下拉框显示值</th>
+                        <th>显示项对应值</th>
+                    </tr>
+                </thead>
+            </table>
+        	<table id="table" class="showxiala" width="98%" id="table1"  border="0" cellpadding="1" cellspacing="1" bgcolor="#CBD8AC" align="center">
+            </table>
+        </div>
+    </div>
+    <div class="bottom_boxbutton">
+      <input class="ui-button-state" type="button" id="check" value="确认">
+      <input class="ui-button-state" type="button" id="checkfalse" value="取消" onclick="clearCeng('myContextMenu')">
+    </div>
+</div>

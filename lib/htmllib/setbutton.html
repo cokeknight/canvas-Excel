@@ -1,0 +1,56 @@
+<div class="myContextBox tangram-dialog" id="tangram-dialog"> 
+  <!--title-->
+  <div class="tangram-dialog-title"> <span class="tangram-dialog-title-inner" id="tangram-title"> 设置按钮 </span>
+    <div class="tangram-dialog-close" onClick="clearCeng('myContextMenu');"> </div>
+  </div>
+  <!--title--> 
+  <!--content-->
+  <div class="tangram-dialog-content setbutton">
+    <div class="clath-path-all">
+      <form name='selbutton'>
+        <li><span>按钮图片</span>
+        	<select name="selstyle" id="selstyle" style="width:80px; margin-left:20px;">
+            	<option value="1">浅蓝色</option>
+                <option value="2">深蓝色</option>
+            	<option value="3">橘黄色</option>
+            	<option value="4">绿黄色</option>
+            	<option value="5">大红色</option>
+            </select>
+            插入图片在按钮的
+        </li>
+        <li><span>按钮类型</span>
+        	<select name="seltype" id="seltype" style="width:80px; margin-left:20px;" onChange="if(value==3){buttonimgype.style.display='inline';}else{buttonimgype.style.display='none';}">
+            	<option value="1">普通按钮</option>
+                <option value="2">计算按钮</option>
+            	<option value="3">插入图片按钮</option>
+            </select>
+            
+            <select name="buttonimgype" id="buttonimgype" style="width:60px; margin-left:20px; display:none">
+            	<option value="1">上面</option>
+                <option value="2">下面</option>
+            	<option value="3">左边</option>
+            	<option value="4">右边</option>
+            	<option value="5">中间</option>
+            </select>
+        </li>
+        <li><span>脚本类型</span>
+        	<select name="scripttype" id="scripttype" style="width:80px; margin-left:20px;">
+            	<option value="1">VBscript</option>
+                <option value="2">JScript</option>
+            </select>
+        </li>
+       <li><p>按钮执行脚本：如果脚本为空，则可以在事件CellButtonClicked中处理按钮点击事件</p></li>
+       <li><textarea rows="4" cols="46" name='script'></textarea></li>
+       </form>
+    </div>
+    </div>
+  <!--content--> 
+  <!--footer-->
+  <div class="tangram-dialog-footer">
+    <div class="tangram-dialog-accept">
+      <input class="ui-button-state" type="button" id="check" value="确认">
+      <input class="ui-button-state" type="button" id="checkfalse" value="取消" onClick="clearCeng('myContextMenu')">
+    </div>
+  </div>
+  <!--footer--> 
+</div>

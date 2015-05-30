@@ -1,0 +1,46 @@
+<div class="myContextBox tangram-dialog" id="tangram-dialog"> 
+  <!--title-->
+  <div class="tangram-dialog-title"> <span class="tangram-dialog-title-inner" id="tangram-title"> 设置单元是否可编辑 </span>
+    <div class="tangram-dialog-close" onClick="clearCeng('myContextMenu');"> </div>
+  </div>
+  <!--title--> 
+  <!--content-->
+  <div class="tangram-dialog-content">
+    <div class="clath-path-all">
+      <form name='selbutton'>
+        <div id="center_boxitem" class="center_boxitem">
+          <h2> 单元是否可编辑设置 </h2>
+          <div class="outline">
+            <li>
+              <input type="checkbox" value="cellfalse" id="check2" />
+              &nbsp;
+              <label for="check2">单元保护（设计状态和计算状态都有效）</label>
+            </li>
+          </div>
+        </div>
+        <div id="center_boxitem" class="center_boxitem">
+          <h2> 整表设置</h2>
+          <div class="outline">
+            <li><!--<input type="checkbox" value="acellfalse" id="check3" />&nbsp;<label for="check3">计算之后整表自动不可编辑</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;-->
+              <input type="checkbox" value="allcellfalse" id="check4" />
+              &nbsp;
+              <label for="check4">整表保护</label>
+            </li>
+            <!--            <li><input type="checkbox" value="accellfalse" id="check5"/>&nbsp;<label for="check5">开启录入功能，只有单元字段可以录入</label></li>
+--> 
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--content--> 
+  <!--footer-->
+  <div class="tangram-dialog-footer">
+    <div class="tangram-dialog-accept">
+      <input class="ui-button-state" type="button" id="check" value="确认">
+      <input class="ui-button-state" type="button" id="checkfalse" value="取消" onClick="clearCeng('myContextMenu')">
+    </div>
+  </div>
+  <!--footer--> 
+</div>
