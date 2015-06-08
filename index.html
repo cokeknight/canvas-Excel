@@ -52,15 +52,21 @@ if (!Array.prototype.find) {
 		 		"base"		:"base",
 		 		"config"	:"config",
 		 		"canvas"	:"canvas",
-		 		"draw"		:"draw"
+		 		"draw"		:"draw",
+        "eventController"   :"eventController",
+        "event"    :"event",
+        "cell"      :'cell'
 		 }
 });
-require(["canvas"],function(canvas){    
+require(["canvas","event" ],function(canvas,event){    
 	console.log(canvas,canvas.find({elem: "id",dest:"yaxis"}));
-    canvas.find({elem: "id",dest:"main"}).canvas.init();
-	canvas.find({elem: "id",dest:"yaxis"}).canvas.init();
+    var mainCanvas = canvas.find({elem: "id",dest:"main"}).canvas;
+    mainCanvas.init();
+	  canvas.find({elem: "id",dest:"yaxis"}).canvas.init();
     document.getElementById("redraw").addEventListener("click", function(){
     	canvas.redraw();
     }, false);
+
+    event.setContext(mainCanvas).initialize();
 });
 </script>

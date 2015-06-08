@@ -1,4 +1,4 @@
-define(["base","config","draw"], function(B, C,D) {
+define(["base","config","draw","cell"], function(B, C,D,CELL) {
         //return an object to define the "my/shirt" module.
         var utils = (function () {
         var me = {};
@@ -11,7 +11,7 @@ define(["base","config","draw"], function(B, C,D) {
           var i = 0;
           var l = vendors.length;
 
-          for (; i < l; i++) {
+          for (; i < l; i++) {  
             transform = vendors[i] + 'ransform';
             if (transform in _elementStyle) return vendors[i].substr(0, vendors[i].length - 1);
           }
@@ -137,6 +137,15 @@ define(["base","config","draw"], function(B, C,D) {
          __propertys__: function () {//实例属性
                 this.dataStore = []; // initializes an empty array to store list elements
                 this.canvasitems = [];//存放canvas图层
+                this.colHeadWidth =C.colHeadWidth;
+                this.colHeadHeight =C.colHeadHeight;
+                this.rowHeadWidth =C.rowHeadWidth;
+                this.rowHeadHeight =C.rowHeadHeight; 
+                this.rows = C.rows;
+                this.cols = C.cols;
+                this.width= C.width;
+                this.height =C.height;
+                this.cells = [];
 
             },
         /**
@@ -150,9 +159,9 @@ define(["base","config","draw"], function(B, C,D) {
             document.body.appendChild(canvas);
             this.canvas = canvas;
             
-            this.draw();
+            this.draw('init');
         },
-        draw:function(){
+        draw:function(flag){
               var canvas = this.canvas;
               if (canvas.getContext) {
                 var ctx = this.ctx = canvas.getContext("2d");
@@ -162,7 +171,7 @@ define(["base","config","draw"], function(B, C,D) {
                 window.performance.mark('drawColHeadBegin');
                 D.drawRowHead();
                 window.performance.mark('drawRowHeadBegin');
-                D.drawRowColCells();
+                D.drawRowColCells.call(this,D,flag);
                 window.performance.mark('drawRowColCellsBegin');
                 this.bind();
               }
@@ -174,11 +183,24 @@ define(["base","config","draw"], function(B, C,D) {
                   console.log('name ' + req.name + ' took ' + req.duration + 'ms');
               }
         },
-
+        pushCell : function(cell){
+            //if(cell instanceof CELL){
+                this.cells.push(cell);
+           // }
+        },
+        getCell : function(col,row){
+            var index = (col-1)*C.cols + row-1;
+            return this.cells[index];
+        },
         redraw: function(){
             D.clear();
             this.draw();
         },
+        unselectAll : function(){
+            this.cells.forEach(function(cell){
+                
+            });
+        }
         bind:function(removeFalg){
             var eventType = removeFalg ?utils.removeEvent: utils.addEvent;
             if(utils.hasTouch) {

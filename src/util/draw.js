@@ -1,4 +1,4 @@
-define(["base","config"], function(B, C) {
+define(["base","config","cell"], function(B, C,CELL) {
 
 	var FONTSIZE = 12;
 	var TEXTSTYLE = "#222222";
@@ -63,7 +63,7 @@ define(["base","config"], function(B, C) {
                 
             }
         },
-        drawRowColCells : function(){
+        drawRowColCells : function(D,flag){
         	var m_canvas = document.createElement('canvas');
 			m_canvas.width = C.colHeadWidth;
 			m_canvas.height = C.rowHeadHeight;
@@ -71,12 +71,22 @@ define(["base","config"], function(B, C) {
 			m_context.strokeRect(0, 0, C.colHeadWidth, C.rowHeadHeight);
             for(var i=0;i<C.rows;i++){
                 for(var j=0,len = C.cols;j<len;j++){
-                    this.drawRowColCell(i,j,String.fromCharCode(65+i)+j);
+                    if(flag =='init'){
+                        this.pushCell(new CELL(i+1,j+1));
+                    }else{
+                        var cell = this.getCell(i+1,j+1);
+                        if(cell.needpaint){
+                            D.drawRowColCell(i,j,String.fromCharCode(65+i)+j,cell);
+                            continue;
+                        }
+                    }
+                    D.drawRowColCell(i,j,String.fromCharCode(65+i)+j);
+                    
                 }
             }
         },
 
-        drawRowColCell : function(row,col,str,m_canvas){
+        drawRowColCell : function(row,col,str,cell){
             var ctx = this.ctx;
             var startX = 0.5;
             var startY = 0.5;
@@ -86,12 +96,22 @@ define(["base","config"], function(B, C) {
             startX += C.colHeadWidth * row;
             startY += C.rowHeadHeight * col;
             //ctx.moveTo(startX, startY);
-            if(m_canvas){
-            	ctx.drawImage(m_canvas, startX, startY);
-            }else{
-            	ctx.strokeRect(startX, startY, C.colHeadWidth, C.rowHeadHeight);
-            }
-            
+            //if(m_canvas){
+            //	ctx.drawImage(m_canvas, startX, startY);
+            //}else{
+                if(cell && cell.isselected){
+                    ctx.save();
+                    ctx.lineWidth =2;
+                    ctx.strokeStyle = '#5292f7';  console.log(105,startX,startY);
+                    ctx.strokeRect(startX-0.5, startY-0.5, C.colHeadWidth+1, C.rowHeadHeight+1);
+                    ctx.restore();
+                }else{
+                    ctx.strokeRect(startX, startY, C.colHeadWidth, C.rowHeadHeight);
+                }
+            	
+
+            //}
+
             this.drawText(startX+0.5, startY+0.5,C.colHeadWidth-1,C.rowHeadHeight-1,str,ctx);
         },
 
