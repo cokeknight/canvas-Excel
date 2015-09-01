@@ -158,7 +158,7 @@ define(["base","config","draw","cell"], function(B, C,D,CELL) {
             canvas.height =C.height;
             document.body.appendChild(canvas);
             this.canvas = canvas;
-            
+            this.ClientRect = this.canvas.getBoundingClientRect();
             this.draw('init');
         },
         draw:function(flag){
@@ -196,11 +196,33 @@ define(["base","config","draw","cell"], function(B, C,D,CELL) {
             D.clear();
             this.draw();
         },
+        getSelectCell : function(x,y){
+            x = x - C.rowHeadWidth;
+            y = y - C.colHeadHeight;
+            var width =  C.colHeadWidth;
+            var height = C.rowHeadHeight;
+            var col,row;
+            for(var i=0;i<C.rows;i++){
+                for(var j=0,len = C.cols;j<len;j++){
+                    if(x>=i*width && x<=(i+1)*width){
+                        col = i+1;
+                    }
+                    if(y>=j*height && y<=(j+1)*height){
+                        row = j+1;
+                    }
+                }
+            }
+            document.getElementById("showmessage").innerHTML="row:"+row+" col:"+col;
+           // console.log(row,col);
+            return this.getCell(col,row);
+        },
         unselectAll : function(){
             this.cells.forEach(function(cell){
-                
+                if(cell.needpaint==true){
+                    cell.reset();
+                }
             });
-        }
+        },
         bind:function(removeFalg){
             var eventType = removeFalg ?utils.removeEvent: utils.addEvent;
             if(utils.hasTouch) {
@@ -209,6 +231,7 @@ define(["base","config","draw","cell"], function(B, C,D,CELL) {
                 eventType(this.canvas, 'touchcancel', this);
                 eventType(this.canvas, 'touchend', this);
             }else {
+
                 eventType(this.canvas, 'mousedown', this);
                 eventType(this.canvas, 'mousemove', this);
                 eventType(this.canvas, 'mousecancel', this);
@@ -233,13 +256,23 @@ define(["base","config","draw","cell"], function(B, C,D,CELL) {
               this._end(e);
               break;
           }
+
         },
         _start:function(e){
             e.preventDefault();
             if (e.targetTouches && e.targetTouches.length != 1) return;
-            this.x = e.changedTouches ? e.changedTouches[0].pageX: e.pageX;
-            this.y = e.changedTouches ? e.changedTouches[0].pageY: e.pageY;
+            this.x = (e.changedTouches ? e.changedTouches[0].pageX: e.pageX) - this.ClientRect.left;
+            this.y = (e.changedTouches ? e.changedTouches[0].pageY: e.pageY) - this.ClientRect.top;
+            
+            
+            if(this.guaguale == false){
+                this.unselectAll();
+            }
+            this.getSelectCell(this.x,this.y).select();
             this.guaguale = true;
+
+            this.redraw();
+
         },
         _move:function(e){
              e.preventDefault();
