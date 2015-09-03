@@ -2,12 +2,11 @@ define(["base","config","cell"], function(B, C,CELL) {
 
 	var FONTSIZE = 12;
 	var TEXTSTYLE = "#222222";
-	return {
-		setCanvas : function(canvas){
-			this.canvas = canvas;
-			this.ctx = canvas.getContext("2d");
-			return this;
-		},
+    var draw = function(canvas){
+        this.canvas = canvas;
+        this.ctx = canvas.getContext("2d");
+    }
+	draw.prototype =  {
 		drawText:function(x,y,w,h,s,ctx){
 
             ctx.fillStyle = TEXTSTYLE;
@@ -16,7 +15,9 @@ define(["base","config","cell"], function(B, C,CELL) {
             ctx.font =FONTSIZE+"px Arial, sans-serif";
             ctx.fillText(s, x+w/2, y+h/2);
         },
+
         clear : function(){
+            console.log(this.ctx, this.canvas,this.canvas.width, this.canvas.height);
         	this.ctx.clearRect ( 0 , 0 , this.canvas.width, this.canvas.height );
 
         },
@@ -114,7 +115,27 @@ define(["base","config","cell"], function(B, C,CELL) {
 
             this.drawText(startX+0.5, startY+0.5,C.colHeadWidth-1,C.rowHeadHeight-1,str,ctx);
         },
+        getRowStartX:function(row,col){
+            var ctx = this.ctx;
+            var startX = 0.5;
+            var startY = 0.5;
+            startX += C.rowHeadWidth;
+            startY += C.colHeadHeight;
 
+            startX += C.colHeadWidth * (col-1);
+            startY += C.rowHeadHeight * (row-1);
+            return {x:startX,y:startY};
+        },
+        clearRowColCell : function(srow,scol,erow,ecol){
+            
+            var srowXY = this.getRowStartX(srow,scol);
+            var erowXY = this.getRowStartX(erow,ecol);
+            var width = (Math.abs(ecol-scol)+1)*C.colHeadWidth;
+            var height = (Math.abs(erow-srow)+1)*C.rowHeadHeight;
+            console.log("clearRowColCell","srow",srow,"scol",scol, "erow",erow,"ecol",ecol, width,height);
+            this.ctx.clearRect ( srowXY.x , srowXY.y , width,height);
+
+        },
         drawYAxis: function(){
             
 
@@ -174,8 +195,30 @@ define(["base","config","cell"], function(B, C,CELL) {
             ctx.fillStyle="#AAAAAB";console.log(ctx,startX, startY, C.YAXISWIDTH-1, C.height-1);
             ctx.fillRect(startX, AngelRegionH, C.YAXISWIDTH, YScrollBarRegionH);
 
+        },
+        drawSelect:function(selectArea){
+            var startcell = selectArea.startcell;
+            var endcell = selectArea.endcell;
+             console.log(202,endcell);
+            if(!endcell){
+                endcell = startcell;
+            }
+            var srow = startcell.row;
+            var scol = startcell.col;
+            var erow = endcell.row;
+            var ecol = endcell.col;
+            console.log(209,srow,scol,erow,ecol);
+            this.clearRowColCell(srow,scol,erow,ecol);
+            if(startcell>=endcell){
+
+                for(var i=startcell;i<endcell;i++){
+
+                }
+            }
+
         }
     }
+    return draw;
 
 
 });

@@ -147,6 +147,7 @@ define(["base","config","draw","cell"], function(B, C,D,CELL) {
                 this.height =C.height;
                 this.cells = [];
 
+                this.selectArea  = {"startcell":null,"endcell":null};
             },
         /**
         * 图表绘制的初始化函数
@@ -158,25 +159,28 @@ define(["base","config","draw","cell"], function(B, C,D,CELL) {
             canvas.height =C.height;
             document.body.appendChild(canvas);
             this.canvas = canvas;
+            this.D = new D(canvas);
             this.ClientRect = this.canvas.getBoundingClientRect();
             this.draw('init');
+
+            window.performance.measure('mainDrawRowHead', 'mainDrawColHeadBegin', 'mainDrawRowHeadBegin');
+            window.performance.measure('mainDrawRowColCells', 'mainDrawRowHeadBegin', 'mainDrawRowColCellsBegin');
         },
         draw:function(flag){
               var canvas = this.canvas;
               if (canvas.getContext) {
                 var ctx = this.ctx = canvas.getContext("2d");
                 var myTime = window.performance.now();
-                D.setCanvas(canvas);
-                D.drawColHead();
-                window.performance.mark('drawColHeadBegin');
-                D.drawRowHead();
-                window.performance.mark('drawRowHeadBegin');
-                D.drawRowColCells.call(this,D,flag);
-                window.performance.mark('drawRowColCellsBegin');
+                
+                this.D.drawColHead();
+                window.performance.mark('mainDrawColHeadBegin');
+                this.D.drawRowHead();
+                window.performance.mark('mainDrawRowHeadBegin');
+                this.D.drawRowColCells.call(this,this.D,flag);
+                window.performance.mark('mainDrawRowColCellsBegin');
                 this.bind();
               }
-              window.performance.measure('drawRowHead', 'drawColHeadBegin', 'drawRowHeadBegin');
-              window.performance.measure('drawRowColCells', 'drawRowHeadBegin', 'drawRowColCellsBegin');
+
               var items = window.performance.getEntriesByType('measure');
               for (var i = 0; i < items.length; ++i) {
                   var req = items[i];
@@ -189,11 +193,11 @@ define(["base","config","draw","cell"], function(B, C,D,CELL) {
            // }
         },
         getCell : function(col,row){
-            var index = (col-1)*C.cols + row-1;
+            var index = (row-1)*C.cols + col-1;
             return this.cells[index];
         },
         redraw: function(){
-            D.clear();
+            this.D.clear();
             this.draw();
         },
         getSelectCell : function(x,y){
@@ -268,23 +272,31 @@ define(["base","config","draw","cell"], function(B, C,D,CELL) {
             if(this.guaguale == false){
                 this.unselectAll();
             }
-            this.getSelectCell(this.x,this.y).select();
+            var currentCell = this.getSelectCell(this.x,this.y);//.select();
             this.guaguale = true;
+            console.log("mousedown",currentCell);
+            this.selectArea.startcell = this.selectArea.endcell = currentCell;
 
-            this.redraw();
+            this.D.drawSelect(this.selectArea);
 
         },
         _move:function(e){
              e.preventDefault();
             if (!this.guaguale) return;
-            var epageX = e.changedTouches ? e.changedTouches[0].pageX: e.pageX;
-            var epageY = e.changedTouches ? e.changedTouches[0].pageY: e.pageY;
+            var epageX =  (e.changedTouches ? e.changedTouches[0].pageX: e.pageX) - this.ClientRect.left;
+            var epageY =  (e.changedTouches ? e.changedTouches[0].pageY: e.pageY) - this.ClientRect.top;
 
             var xdis = epageX - this.x;
             var ydis = epageY - this.y;
             //this.clip(this.x,this.y,epageX,epageY);
             this.x = epageX;
             this.y= epageY;
+
+            var currentCell = this.getSelectCell(epageX,epageY);//.select();
+            console.log(295,currentCell);
+            this.selectArea.endcell = currentCell;
+            this.D.drawSelect(this.selectArea);
+
         },
         _end:function(e){
             this.guaguale = false;
@@ -316,31 +328,23 @@ define(["base","config","draw","cell"], function(B, C,D,CELL) {
             document.body.appendChild(canvas);
             this.canvas = canvas;
             this.draw();
+
         },
         draw:function(){
               var canvas = this.canvas;
               if (canvas.getContext) {
                 var ctx = this.ctx = canvas.getContext("2d");
                 var myTime = window.performance.now();
-                
-                D.setCanvas(canvas);
-                D.drawYAxis();
-                
-                window.performance.mark('drawColHeadBegin');
-                
+                this.D = new D(canvas);
+                this.D.drawYAxis();
+            
                 this.bind();
               }
-              window.performance.measure('drawRowHead', 'drawColHeadBegin', 'drawRowHeadBegin');
-              window.performance.measure('drawRowColCells', 'drawRowHeadBegin', 'drawRowColCellsBegin');
-              var items = window.performance.getEntriesByType('measure');
-              for (var i = 0; i < items.length; ++i) {
-                  var req = items[i];
-                  console.log('name ' + req.name + ' took ' + req.duration + 'ms');
-              }
+
         },
 
         redraw: function(){
-            D.clear();
+            this.D.clear();
             this.draw();
         },
         bind:function(removeFalg){
