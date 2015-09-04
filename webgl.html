@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<!--apple-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!--apple-->
+<title>ChinaExcel HTML5 版</title>
+<meta name="Description" content="采用HTML5技术来展现ChinaExcelWeb控件的所有功能，从而实现报表的跨平台应用，包括手机，平板电脑以及IPAD等移动终端上的业务需求。"/>
+<link href="css/css.css" rel="stylesheet" />
+<style type="text/css">
+#showmessage{float: right;line-height: 25px; font-size: 14px;}
+#canvas{float: left;position: relative;}
+#main{float: left;}
+#canvasshadow{position: absolute;left: 0px;top: 0px;}
+</style>
+
+</head>
+
+<body style="width:1032px; margin:0px">
+  <div id="canvas" class="canvas"><canvas width=800 height=600 id="testcanvas"></canvas></div>
+	<button id="redraw">重绘</button>
+  <div id="showmessage"></div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+function calcuteperformance(func){
+
+  var start = window.performance.now() ;
+  func();
+  var end = window.performance.now() ;
+  console.log(end-start);
+}
+calcuteperformance(function(){
+
+  var C={
+      colHeadWidth :64,
+    colHeadHeight : 27,
+    rowHeadWidth :50,
+    rowHeadHeight : 23, 
+    rows : 12,
+    cols : 100,
+    width:819,
+        height:600,
+        YAXISWIDTH:1,
+        controls:{
+          KEY_UP    :'moveUp',
+          KEY_LEFT  :'moveLeft',
+          KEY_DOWN  :'moveDown',
+          KEY_RIGHT :'moveRight',
+          KEY_ENTER :'SELECT',
+          KEY_SPACE :'SELECT',
+          CLICK   :'SELECT',
+          TOUCHSTART  :'SELECT',
+          MOUSEMOVE :'move',
+          TOUSHMOVE :'mouve',
+          TOUCHCANCEL :'end',
+          TOUCHEND  :'end',
+          MOLUSEUP  :'end'
+        }
+};
+function initWebGL(canvas) {
+  var gl = null;
+  
+  try {
+    // Try to grab the standard context. If it fails, fallback to experimental.
+    gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+  }
+  catch(e) {}
+  
+  // If we don't have a GL context, give up now
+  if (!gl) {
+    alert("Unable to initialize WebGL. Your browser may not support it.");
+    gl = null;
+  }
+  
+  return gl;
+}
+var gl = initWebGL(document.getElementById("testcanvas"));
+for(var i=0;i<C.rows;i++){
+    for(var j=0,len = C.cols;j<len;j++){
+        drawRowColCell(i,j,String.fromCharCode(65+i)+j,gl); 
+    }
+}
+
+function drawRowColCell(row,col,str,ctx){
+            var ctx = ctx;
+            var startX = 0.5;
+            var startY = 0.5;
+            startX += C.rowHeadWidth;
+            startY += C.colHeadHeight;
+
+            startX += C.colHeadWidth * row;
+            startY += C.rowHeadHeight * col;
+
+           ctx.strokeRect(startX, startY, C.colHeadWidth, C.rowHeadHeight);
+           drawText(startX+0.5, startY+0.5,C.colHeadWidth-1,C.rowHeadHeight-1,str,ctx);      
+}
+ function   drawText(x,y,w,h,s,ctx){
+
+            ctx.fillStyle =  "#222222";
+            ctx.textBaseline = 'middle';
+            ctx.textAlign = 'center';
+            ctx.font ="12px Arial, sans-serif";
+            ctx.fillText(s, x+w/2, y+h/2);
+  }
+
+
+});
+
+
+</script>

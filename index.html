@@ -11,16 +11,22 @@
 <meta name="Description" content="采用HTML5技术来展现ChinaExcelWeb控件的所有功能，从而实现报表的跨平台应用，包括手机，平板电脑以及IPAD等移动终端上的业务需求。"/>
 <link href="css/css.css" rel="stylesheet" />
 <style type="text/css">
-#showmessage{float: right;line-height: 25px; font-size: 14px;}
-#canvas{float: left;}
+.rightview{float: left; margin-left: 100px;}
+#showmessage,#showmovespeed{line-height: 25px; font-size: 14px;}
+#canvas{float: left;position: relative;}
+#main{float: left;}
+#canvasshadow,#canvaseffect{position: absolute;left: 0px;top: 0px;}
 </style>
 
 </head>
 
-<body style="width:1032px; margin:0px">
-
+<body style="width:100%; margin:0px">
+  <div id="canvas" class="canvas"></div>
 	<button id="redraw">重绘</button>
-  <div id="showmessage"></div>
+  <div class='rightview'>  <div id="showmessage"></div>
+  <div id="showfirstspeed"></div>
+  <div id="showmovespeed"></div></div>
+
 </body>
 </html>
 
@@ -51,22 +57,34 @@ if (!Array.prototype.find) {
  require.config({　　　　
 	     baseUrl: "src/util",
 		 paths: {　　　
-		 		"base"		:"base",
-		 		"config"	:"config",
-		 		"canvas"	:"canvas",
-		 		"draw"		:"draw",
+        /***基础组件***/
+		 		"base"		:"base",/***继承类函数***/
+		 		"config"	:"config",/***配置信息类***/
+        "utils":"utils",/****工具类*****/
+
+
+        "draw"    :"draw",/***图形描绘的函数库****/
+        "canvas":"canvas",
+        "canvasshadow":"canvasshadow",/**影子画布**/
+        "canvaseffect":"canvaseffect",/**影子画布**/
+		 		"canvasList"	:"canvasList",
+		 		
         "eventController"   :"eventController",
         "event"    :"event",
         "cell"      :'cell'
 		 }
 });
-require(["canvas","event" ],function(canvas,event){    
-	console.log(canvas,canvas.find({elem: "id",dest:"yaxis"}));
-    var mainCanvas = canvas.find({elem: "id",dest:"main"}).canvas;
+require(["canvasList","event" ],function(canvasList,event){    
+	console.log(canvasList,canvasList.find({elem: "id",dest:"yaxis"}));
+    var mainCanvas = canvasList.find({elem: "id",dest:"main"}).canvas;
     mainCanvas.init();
-	  canvas.find({elem: "id",dest:"yaxis"}).canvas.init();
+    var mainCanvaseffect = canvasList.find({elem: "id",dest:"effect"}).canvas;
+    mainCanvaseffect.init();
+    var mainCanvasshadow = canvasList.find({elem: "id",dest:"shadow"}).canvas;
+    mainCanvasshadow.init();
+	  canvasList.find({elem: "id",dest:"yaxis"}).canvas.init();
     document.getElementById("redraw").addEventListener("click", function(){
-    	canvas.redraw();
+    	mainCanvas.redraw();
     }, false);
 
     event.setContext(mainCanvas).initialize();
