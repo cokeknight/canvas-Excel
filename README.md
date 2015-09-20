@@ -4,4 +4,4 @@ canvas-Excel
 
 
 demo
-<a href='http://htmlpreview.github.io/?https://github.com/cokeknight/canvas-Excel/blob/master/index.html'>http://htmlpreview.github.io/?https://github.com/cokeknight/canvas-Excel/blob/master/index.html</a>
+<a href='http://0571ci.gov.cn/canvas-Excel/'>http://0571ci.gov.cn/canvas-Excel/</a>
